@@ -22,7 +22,9 @@ Fixed::Fixed(const float x) {
 
 Fixed& Fixed::operator =(const Fixed& x) {
 	std::cout << "[ Fixed Copy assignment operator called ]" << std::endl ;
-	this->value = x.value ;
+	if ( this != &x ) {
+		this->value = x.value ;
+	}
 	return *this ;
 }
 
