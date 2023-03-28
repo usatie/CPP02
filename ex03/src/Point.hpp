@@ -10,6 +10,7 @@ private:
 public:
 	Point() ;
 	Point(const Fixed & x, const Fixed & y) ;
+	Point(const float x, const float y) ;
 	Point(const Point& p) ;
 	Point& operator =(const Point& p) ;
 	~Point() ;

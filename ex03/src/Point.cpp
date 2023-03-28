@@ -9,6 +9,10 @@ Point::Point(const Fixed & x, const Fixed & y):x(x),y(y) {
 	//std::cout << "[ Point constructor called ]" << std::endl ;
 }
 
+Point::Point(const float x, const float y):x(x),y(y) {
+	//std::cout << "[ Point constructor called ]" << std::endl ;
+}
+
 Point::Point(const Point& p):x(p.x),y(p.y) {
 	//std::cout << "[ Point Copy constructor called ]" << std::endl ;
 }
