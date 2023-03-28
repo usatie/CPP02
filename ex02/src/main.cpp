@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 
+/*
 int main( void ) {
 	// Tests from subject's pdf
 	{
@@ -111,7 +112,7 @@ int main( void ) {
 	}
 	return 0;
 }
-/*
+*/
 void test(std::string info, const Fixed a) {
   std::cout << std::fixed;
   std::cout << std::setw(15) << info << " : " << a << std::endl;
@@ -191,4 +192,3 @@ int main(void) {
   }
   return 0;
 }
-*/

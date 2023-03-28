@@ -84,12 +84,12 @@ Fixed	Fixed::operator -(const Fixed& x) const {
 // Simplest form : 
 // (x * y) >> numFractionalBits
 Fixed	Fixed::operator *(const Fixed& x) const {
-	Fixed result ;
-	result.value = ((long long)value * (long long)x.value) ;
+	long long tmp = ((long long)value * (long long)x.value) ;
 	// To make (EPSILON * -EPSILON) to be zero
-	if ( result.value < (1 << numFractionalBits) && result.value > -(1 << numFractionalBits)) 
+	if ( tmp < (1 << numFractionalBits) && tmp > -(1 << numFractionalBits)) 
 		return 0 ;
-	result.value = result.value >> numFractionalBits ;
+	Fixed result ;
+	result.value = tmp >> numFractionalBits ;
 	return result ;
 }
 
