@@ -63,6 +63,12 @@ bool	Fixed::operator ==(const Fixed& x) const { return value == x.value ; }
 bool	Fixed::operator !=(const Fixed& x) const { return value != x.value ; }
 
 // Arithmetic Operator
+//
+// --------------- Error Handling ---------------
+// |  Zero Division : Caller's responsibility   |
+// |  Overflow : Caller's responsibility        |
+// |  Underflow : Caller's responsibility       |
+// ----------------------------------------------
 Fixed	Fixed::operator +(const Fixed& x) const {
 	Fixed result ;
 	result.value = this->value + x.value ;
@@ -87,12 +93,7 @@ Fixed	Fixed::operator *(const Fixed& x) const {
 // (x / y) << numFractionalBits
 Fixed	Fixed::operator /(const Fixed& x) const {
 	Fixed result ;
-	if ( 0 != (value << numFractionalBits) ) {
-		result.value = ((value << numFractionalBits) / x.value) ;
-	}
-	else {
-		result.value = (value / x.value) << numFractionalBits ;
-	}
+	result.value = ((long long)value << numFractionalBits) / (long long)x.value ;
 	return result ;
 }
 
@@ -105,6 +106,17 @@ Fixed&	Fixed::operator ++() {
 Fixed	Fixed::operator ++(int) {
 	Fixed temp = *this ;
 	++value ;
+	return temp ;
+}
+
+Fixed&	Fixed::operator --() {
+	--value ;
+	return *this ;
+}
+
+Fixed	Fixed::operator --(int) {
+	Fixed temp = *this ;
+	--value ;
 	return temp ;
 }
 

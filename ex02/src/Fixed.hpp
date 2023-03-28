@@ -33,6 +33,8 @@ public:
 	// Increment/Decrement Operator
 	Fixed&	operator ++() ;
 	Fixed	operator ++(int) ;
+	Fixed&	operator --() ;
+	Fixed	operator --(int) ;
 	// Overloaded member function
 	static Fixed &min(Fixed & a, Fixed & b) ;
 	static const Fixed &min(const Fixed & a, const Fixed & b) ;
