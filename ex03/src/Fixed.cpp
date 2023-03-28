@@ -3,25 +3,25 @@
 #include <cmath>
 
 Fixed::Fixed():value(0) {
-	//std::cout << "[ Fixed Default constructor called ]" << std::endl ;
+	std::cout << "[ Fixed Default constructor called ]" << std::endl ;
 }
 
 Fixed::Fixed(const Fixed& x):value(x.value) {
-	//std::cout << "[ Fixed Copy constructor called ]" << std::endl ;
+	std::cout << "[ Fixed Copy constructor called ]" << std::endl ;
 }
 
 Fixed::Fixed(const int x) {
 	value = x << numFractionalBits ;
-	//std::cout << "[ Fixed Copy constructor called ]" << std::endl ;
+	std::cout << "[ Fixed Copy constructor called ]" << std::endl ;
 }
 
 Fixed::Fixed(const float x) {
 	value = roundf(x * (1 << numFractionalBits)) ;
-	//std::cout << "[ Fixed Copy constructor called ]" << std::endl ;
+	std::cout << "[ Fixed Copy constructor called ]" << std::endl ;
 }
 
 Fixed& Fixed::operator =(const Fixed& x) {
-	//std::cout << "[ Fixed Copy assignment operator called ]" << std::endl ;
+	std::cout << "[ Fixed Copy assignment operator called ]" << std::endl ;
 	if ( this != &x ) {
 		this->value = x.value ;
 	}
@@ -29,7 +29,7 @@ Fixed& Fixed::operator =(const Fixed& x) {
 }
 
 Fixed::~Fixed() {
-	//std::cout << "[ Fixed destructor is called ]" << std::endl ;
+	std::cout << "[ Fixed destructor is called ]" << std::endl ;
 }
 
 int		Fixed::getRawBits(void) const {
@@ -63,6 +63,12 @@ bool	Fixed::operator ==(const Fixed& x) const { return value == x.value ; }
 bool	Fixed::operator !=(const Fixed& x) const { return value != x.value ; }
 
 // Arithmetic Operator
+//
+// --------------- Error Handling ---------------
+// |  Zero Division : Caller's responsibility   |
+// |  Overflow : Caller's responsibility        |
+// |  Underflow : Caller's responsibility       |
+// ----------------------------------------------
 Fixed	Fixed::operator +(const Fixed& x) const {
 	Fixed result ;
 	result.value = this->value + x.value ;
@@ -78,8 +84,12 @@ Fixed	Fixed::operator -(const Fixed& x) const {
 // Simplest form : 
 // (x * y) >> numFractionalBits
 Fixed	Fixed::operator *(const Fixed& x) const {
+	long long tmp = ((long long)value * (long long)x.value) ;
+	// To make (EPSILON * -EPSILON) to be zero
+	if ( tmp < (1 << numFractionalBits) && tmp > -(1 << numFractionalBits)) 
+		return 0 ;
 	Fixed result ;
-	result.value = ((long long)value * (long long)x.value) >> numFractionalBits ;
+	result.value = tmp >> numFractionalBits ;
 	return result ;
 }
 
@@ -87,12 +97,18 @@ Fixed	Fixed::operator *(const Fixed& x) const {
 // (x / y) << numFractionalBits
 Fixed	Fixed::operator /(const Fixed& x) const {
 	Fixed result ;
-	if ( 0 != (value << numFractionalBits) ) {
-		result.value = ((value << numFractionalBits) / x.value) ;
-	}
-	else {
-		result.value = (value / x.value) << numFractionalBits ;
-	}
+	result.value = ((long long)value << numFractionalBits) / (long long)x.value ;
+	return result ;
+}
+
+// Unary Operator
+Fixed	Fixed::operator +() const {
+	return *this ;
+}
+
+Fixed	Fixed::operator -() const {
+	Fixed result ;
+	result.value = -(this->value) ;
 	return result ;
 }
 
@@ -105,6 +121,17 @@ Fixed&	Fixed::operator ++() {
 Fixed	Fixed::operator ++(int) {
 	Fixed temp = *this ;
 	++value ;
+	return temp ;
+}
+
+Fixed&	Fixed::operator --() {
+	--value ;
+	return *this ;
+}
+
+Fixed	Fixed::operator --(int) {
+	Fixed temp = *this ;
+	--value ;
 	return temp ;
 }
 
