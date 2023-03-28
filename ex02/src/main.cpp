@@ -96,6 +96,19 @@ int main( void ) {
 		std::cout << "min( c, d )" << std::endl ;
 		std::cout << Fixed::min( c, d ) << std::endl;
 	}
+	{
+		Fixed EPSILON ;
+		EPSILON.setRawBits(1) ;
+		std::cout << "==================== Epsilon ====================" << std::endl ;
+		std::cout << "EPSILON * EPSILON" << std::endl;
+		std::cout << EPSILON * EPSILON << std::endl;
+		std::cout << "EPSILON * -EPSILON" << std::endl;
+		std::cout << EPSILON * -EPSILON << std::endl;
+		std::cout << "-EPSILON * EPSILON" << std::endl;
+		std::cout << -EPSILON * EPSILON << std::endl;
+		std::cout << "-EPSILON * -EPSILON" << std::endl;
+		std::cout << -EPSILON * -EPSILON << std::endl;
+	}
 	return 0;
 }
 /*
