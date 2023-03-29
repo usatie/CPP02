@@ -32,5 +32,6 @@ run: $(NAME)
 
 format:
 	clang-format -style=google $(SRCS) $(INCLUDES) -i
+	cppcheck --enable=all --inconclusive --suppress=missingIncludeSystem . -I .
 
 .PHONY: all clean fclean re run
