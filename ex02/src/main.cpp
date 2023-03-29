@@ -1,116 +1,114 @@
-#include "Fixed.hpp"
-#include <iostream>
 #include <iomanip>
+#include <iostream>
+
+#include "Fixed.hpp"
 
 /*
 int main( void ) {
-	// Tests from subject's pdf
-	{
-		Fixed a;
-		Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-		std::cout << a << std::endl;
-		std::cout << ++a << std::endl;
-		std::cout << a << std::endl;
-		std::cout << a++ << std::endl;
-		std::cout << a << std::endl;
-		std::cout << a / Fixed(0.5f) << std::endl;
-		std::cout << b << std::endl;
-		std::cout << Fixed::max( a, b ) << std::endl;
-	}
-	// My tests
-	std::cout << "-------------------------- My tests --------------------------" << std::endl ;
-	{
-		Fixed a;
-		Fixed b( 1 ) ;
-		const Fixed c( 0.1f ) ;
-		const Fixed d( 0.01f ) ;
-		std::cout << "a: " << a << std::endl ;
-		std::cout << "b: " << b << std::endl ;
-		std::cout << "c: " << c << std::endl ;
-		std::cout << "d: " << d << std::endl ;
-		// Comparison Operator
-		std::cout << "==================== Comparison Operator ====================" << std::endl ;
-		std::cout << "a < b" << std::endl ;
-		std::cout << std::boolalpha << (a < b) << std::endl;
-		std::cout << "a > b" << std::endl ;
-		std::cout << std::boolalpha << (a > b) << std::endl;
-		std::cout << "a <= b" << std::endl ;
-		std::cout << std::boolalpha << (a <= b) << std::endl;
-		std::cout << "a >= b" << std::endl ;
-		std::cout << std::boolalpha << (a >= b) << std::endl;
-		std::cout << "a == b" << std::endl ;
-		std::cout << std::boolalpha << (a == b) << std::endl;
-		std::cout << "a != b" << std::endl ;
-		std::cout << std::boolalpha << (a != b) << std::endl;
-		std::cout << "c < d" << std::endl ;
-		std::cout << std::boolalpha << (c < d) << std::endl;
-		std::cout << "c > d" << std::endl ;
-		std::cout << std::boolalpha << (c > d) << std::endl;
-		std::cout << "c <= d" << std::endl ;
-		std::cout << std::boolalpha << (c <= d) << std::endl;
-		std::cout << "c >= d" << std::endl ;
-		std::cout << std::boolalpha << (c >= d) << std::endl;
-		std::cout << "c == d" << std::endl ;
-		std::cout << std::boolalpha << (c == d) << std::endl;
-		std::cout << "c != d" << std::endl ;
-		std::cout << std::boolalpha << (c != d) << std::endl;
-		// Arithmetic Operation
-		std::cout << "==================== Arithmetic Operator ====================" << std::endl ;
-		std::cout << "a + b" << std::endl ;
-		std::cout << a + b << std::endl;
-		std::cout << "a - b" << std::endl ;
-		std::cout << a - b << std::endl;
-		std::cout << "a * b" << std::endl ;
-		std::cout << a * b << std::endl;
-		std::cout << "a / b" << std::endl ;
-		std::cout << a / b << std::endl;
-		std::cout << "c + d" << std::endl ;
-		std::cout << c + d << std::endl;
-		std::cout << "c - d" << std::endl ;
-		std::cout << c - d << std::endl;
-		std::cout << "c * d" << std::endl ;
-		std::cout << c * d << std::endl;
-		std::cout << "c / d" << std::endl ;
-		std::cout << c / d << std::endl;
-		// Increment / Decrement
-		std::cout << "==================== Increment / Decrement ====================" << std::endl ;
-		std::cout << "++a" << std::endl ;
-		std::cout << ++a << std::endl;
-		std::cout << a << std::endl;
-		std::cout << "a++" << std::endl ;
-		std::cout << a++ << std::endl;
-		std::cout << a << std::endl;
-		std::cout << "--a" << std::endl ;
-		std::cout << --a << std::endl;
-		std::cout << a << std::endl;
-		std::cout << "a--" << std::endl ;
-		std::cout << a-- << std::endl;
-		std::cout << a << std::endl;
-		// Overloaded member function
-		std::cout << "==================== Overloaded member function ====================" << std::endl ;
-		std::cout << "max( a, b )" << std::endl ;
-		std::cout << Fixed::max( a, b ) << std::endl;
-		std::cout << "min( a, b )" << std::endl ;
-		std::cout << Fixed::min( a, b ) << std::endl;
-		std::cout << "max( c, d )" << std::endl ;
-		std::cout << Fixed::max( c, d ) << std::endl;
-		std::cout << "min( c, d )" << std::endl ;
-		std::cout << Fixed::min( c, d ) << std::endl;
-	}
-	{
-		Fixed EPSILON ;
-		EPSILON.setRawBits(1) ;
-		std::cout << "==================== Epsilon ====================" << std::endl ;
-		std::cout << "EPSILON * EPSILON" << std::endl;
-		std::cout << EPSILON * EPSILON << std::endl;
-		std::cout << "EPSILON * -EPSILON" << std::endl;
-		std::cout << EPSILON * -EPSILON << std::endl;
-		std::cout << "-EPSILON * EPSILON" << std::endl;
-		std::cout << -EPSILON * EPSILON << std::endl;
-		std::cout << "-EPSILON * -EPSILON" << std::endl;
-		std::cout << -EPSILON * -EPSILON << std::endl;
-	}
-	return 0;
+        // Tests from subject's pdf
+        {
+                Fixed a;
+                Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+                std::cout << a << std::endl;
+                std::cout << ++a << std::endl;
+                std::cout << a << std::endl;
+                std::cout << a++ << std::endl;
+                std::cout << a << std::endl;
+                std::cout << a / Fixed(0.5f) << std::endl;
+                std::cout << b << std::endl;
+                std::cout << Fixed::max( a, b ) << std::endl;
+        }
+        // My tests
+        std::cout << "-------------------------- My tests
+--------------------------" << std::endl ;
+        {
+                Fixed a;
+                Fixed b( 1 ) ;
+                const Fixed c( 0.1f ) ;
+                const Fixed d( 0.01f ) ;
+                std::cout << "a: " << a << std::endl ;
+                std::cout << "b: " << b << std::endl ;
+                std::cout << "c: " << c << std::endl ;
+                std::cout << "d: " << d << std::endl ;
+                // Comparison Operator
+                std::cout << "==================== Comparison Operator
+====================" << std::endl ; std::cout << "a < b" << std::endl ;
+                std::cout << std::boolalpha << (a < b) << std::endl;
+                std::cout << "a > b" << std::endl ;
+                std::cout << std::boolalpha << (a > b) << std::endl;
+                std::cout << "a <= b" << std::endl ;
+                std::cout << std::boolalpha << (a <= b) << std::endl;
+                std::cout << "a >= b" << std::endl ;
+                std::cout << std::boolalpha << (a >= b) << std::endl;
+                std::cout << "a == b" << std::endl ;
+                std::cout << std::boolalpha << (a == b) << std::endl;
+                std::cout << "a != b" << std::endl ;
+                std::cout << std::boolalpha << (a != b) << std::endl;
+                std::cout << "c < d" << std::endl ;
+                std::cout << std::boolalpha << (c < d) << std::endl;
+                std::cout << "c > d" << std::endl ;
+                std::cout << std::boolalpha << (c > d) << std::endl;
+                std::cout << "c <= d" << std::endl ;
+                std::cout << std::boolalpha << (c <= d) << std::endl;
+                std::cout << "c >= d" << std::endl ;
+                std::cout << std::boolalpha << (c >= d) << std::endl;
+                std::cout << "c == d" << std::endl ;
+                std::cout << std::boolalpha << (c == d) << std::endl;
+                std::cout << "c != d" << std::endl ;
+                std::cout << std::boolalpha << (c != d) << std::endl;
+                // Arithmetic Operation
+                std::cout << "==================== Arithmetic Operator
+====================" << std::endl ; std::cout << "a + b" << std::endl ;
+                std::cout << a + b << std::endl;
+                std::cout << "a - b" << std::endl ;
+                std::cout << a - b << std::endl;
+                std::cout << "a * b" << std::endl ;
+                std::cout << a * b << std::endl;
+                std::cout << "a / b" << std::endl ;
+                std::cout << a / b << std::endl;
+                std::cout << "c + d" << std::endl ;
+                std::cout << c + d << std::endl;
+                std::cout << "c - d" << std::endl ;
+                std::cout << c - d << std::endl;
+                std::cout << "c * d" << std::endl ;
+                std::cout << c * d << std::endl;
+                std::cout << "c / d" << std::endl ;
+                std::cout << c / d << std::endl;
+                // Increment / Decrement
+                std::cout << "==================== Increment / Decrement
+====================" << std::endl ; std::cout << "++a" << std::endl ; std::cout
+<< ++a << std::endl; std::cout << a << std::endl; std::cout << "a++" <<
+std::endl ; std::cout << a++ << std::endl; std::cout << a << std::endl;
+                std::cout << "--a" << std::endl ;
+                std::cout << --a << std::endl;
+                std::cout << a << std::endl;
+                std::cout << "a--" << std::endl ;
+                std::cout << a-- << std::endl;
+                std::cout << a << std::endl;
+                // Overloaded member function
+                std::cout << "==================== Overloaded member function
+====================" << std::endl ; std::cout << "max( a, b )" << std::endl ;
+                std::cout << Fixed::max( a, b ) << std::endl;
+                std::cout << "min( a, b )" << std::endl ;
+                std::cout << Fixed::min( a, b ) << std::endl;
+                std::cout << "max( c, d )" << std::endl ;
+                std::cout << Fixed::max( c, d ) << std::endl;
+                std::cout << "min( c, d )" << std::endl ;
+                std::cout << Fixed::min( c, d ) << std::endl;
+        }
+        {
+                Fixed EPSILON ;
+                EPSILON.setRawBits(1) ;
+                std::cout << "==================== Epsilon ===================="
+<< std::endl ; std::cout << "EPSILON * EPSILON" << std::endl; std::cout <<
+EPSILON * EPSILON << std::endl; std::cout << "EPSILON * -EPSILON" << std::endl;
+                std::cout << EPSILON * -EPSILON << std::endl;
+                std::cout << "-EPSILON * EPSILON" << std::endl;
+                std::cout << -EPSILON * EPSILON << std::endl;
+                std::cout << "-EPSILON * -EPSILON" << std::endl;
+                std::cout << -EPSILON * -EPSILON << std::endl;
+        }
+        return 0;
 }
 */
 void test(std::string info, const Fixed a) {
