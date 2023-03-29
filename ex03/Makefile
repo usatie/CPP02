@@ -8,8 +8,7 @@ SRCS	= $(wildcard $(SRCDIR)/*.cpp)
 OBJDIR	= obj
 OBJS	= $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
-run: $(NAME)
-	./$(NAME)
+all: $(NAME)
 
 $(NAME) : $(OBJS)
 	$(CXX) $(OBJS) -o $(NAME)
@@ -20,4 +19,14 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 
 clean:
 	$(RM) *.o
+	$(RM) $(OBJS)
+
+fclean: clean
 	$(RM) $(NAME)
+
+re: clean all
+
+run: $(NAME)
+	./$(NAME)
+
+.PHONY: all clean fclean re run
