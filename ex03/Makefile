@@ -5,6 +5,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCDIR	= src
 SRCS	= $(wildcard $(SRCDIR)/*.cpp)
+INCLUDES	= $(wildcard $(SRCDIR)/*.hpp)
 OBJDIR	= obj
 OBJS	= $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
@@ -28,5 +29,8 @@ re: clean all
 
 run: $(NAME)
 	./$(NAME)
+
+format:
+	clang-format -style=google $(SRCS) $(INCLUDES) -i
 
 .PHONY: all clean fclean re run
