@@ -5,6 +5,19 @@
 int main(void) {
   {
     Fixed a;
+    Fixed b(a);
+    Fixed c;
+    c = b;
+    std::cout << a.getRawBits() << std::endl;
+    std::cout << b.getRawBits() << std::endl;
+    std::cout << c.getRawBits() << std::endl;
+    a.setRawBits(1);
+    std::cout << a.getRawBits() << std::endl;
+    a.setRawBits(-1);
+    std::cout << a.getRawBits() << std::endl;
+  }
+  {
+    Fixed a;
     Fixed const b(10);
     Fixed const c(42.42f);
     Fixed const d(b);

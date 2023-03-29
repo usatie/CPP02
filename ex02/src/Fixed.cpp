@@ -76,13 +76,11 @@ Fixed Fixed::operator-(const Fixed& x) const {
 
 // Simplest form :
 // (x * y) >> numFractionalBits
+// 'tmp >> numFractionalBits' doesn't work when tmp is small negative number
 Fixed Fixed::operator*(const Fixed& x) const {
   long long tmp = ((long long)value * (long long)x.value);
-  // To make (EPSILON * -EPSILON) to be zero
-  if (tmp < (1 << numFractionalBits) && tmp > -(1 << numFractionalBits))
-    return 0;
   Fixed result;
-  result.value = tmp >> numFractionalBits;
+  result.value = tmp / (1 << numFractionalBits);
   return result;
 }
 
