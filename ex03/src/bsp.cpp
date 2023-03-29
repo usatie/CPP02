@@ -52,5 +52,5 @@ bool	bsp( Point const a, Point const b, Point const c, Point const point ) {
 	bool s1 = side(a, b, point) ;
 	bool s2 = side(b, c, point) ;
 	bool s3 = side(c, a, point) ;
-	return (s1 || s2 || s3) == (s1 && s2 && s3) ;
+	return (s1 && s2 && s3) || (!s1 && !s2 && !s3) ;
 }
