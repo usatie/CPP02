@@ -3,7 +3,7 @@
 #include "Fixed.hpp"
 
 // print title in green and highlighted
-void printTitle(std::string title) {
+void printTitle(const std::string& title) {
   std::cout << "\033[1;32m" << title << "\033[0m" << std::endl;
 }
 

@@ -8,7 +8,7 @@ Fixed::Fixed() : value(0) {
 
 Fixed::Fixed(const Fixed& x) {
   std::cout << "[ Copy constructor called ]" << std::endl;
-  operator = (x);
+  operator=(x);
 }
 
 Fixed& Fixed::operator=(const Fixed& x) {
@@ -19,7 +19,7 @@ Fixed& Fixed::operator=(const Fixed& x) {
   return *this;
 }
 
-Fixed::~Fixed() { std::cout << "[ destructor is called ]" << std::endl; }
+Fixed::~Fixed() { std::cout << "[ Destructor is called ]" << std::endl; }
 
 int Fixed::getRawBits(void) const {
   std::cout << "[ getRawBits member function called ]" << std::endl;
