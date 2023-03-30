@@ -3,23 +3,37 @@
 
 #include "Fixed.hpp"
 
-int main(void) {
-  // Tests from subject's pdf
-  {
-    Fixed a;
-    Fixed const b(Fixed(5.05f) * Fixed(2));
-    std::cout << a << std::endl;
-    std::cout << ++a << std::endl;
-    std::cout << a << std::endl;
-    std::cout << a++ << std::endl;
-    std::cout << a << std::endl;
-    std::cout << a / Fixed(0.5f) << std::endl;
-    std::cout << b << std::endl;
-    std::cout << Fixed::max(a, b) << std::endl;
-  }
-  // My tests
-  std::cout << "-------------------------- My tests --------------------------"
-            << std::endl;
+// print title in green color surrounded by '='
+void printTitle(std::string const &title) {
+  // set color to green
+  std::cout << "\033[1;32m";
+  // print '='
+  std::cout << std::setfill('=') << std::setw(80) << "" << std::endl;
+  // print title at the center
+  std::cout << std::setfill(' ') << std::setw(40 - title.length() / 2) << ""
+            << title << std::endl;
+  // print '='
+  std::cout << std::setfill('=') << std::setw(80) << "" << std::endl;
+  // reset color
+  std::cout << "\033[0m" << std::setfill(' ') << std::setw(0);
+}
+
+// Tests from subject's pdf
+void testFromSubjects() {
+  printTitle("Tests from subject's pdf");
+  Fixed a;
+  Fixed const b(Fixed(5.05f) * Fixed(2));
+  std::cout << a << std::endl;
+  std::cout << ++a << std::endl;
+  std::cout << a << std::endl;
+  std::cout << a++ << std::endl;
+  std::cout << a << std::endl;
+  std::cout << a / Fixed(0.5f) << std::endl;
+  std::cout << b << std::endl;
+  std::cout << Fixed::max(a, b) << std::endl;
+}
+
+void testOperators() {
   {
     Fixed a;
     Fixed b(1);
@@ -30,8 +44,7 @@ int main(void) {
     std::cout << "c: " << c << std::endl;
     std::cout << "d: " << d << std::endl;
     // setRawBits / getRawBits
-    std::cout << "==================== raw bits  ===================="
-              << std::endl;
+    printTitle("setRawBits / getRawBits");
     std::cout << "a.setRawBits(-1): " << std::endl;
     a.setRawBits(-1);
     std::cout << "a: " << a << std::endl;
@@ -39,8 +52,7 @@ int main(void) {
     std::cout << "a.toFloat(): " << a.toFloat() << std::endl;
     std::cout << "a.getRawBits(): " << a.getRawBits() << std::endl;
     // Comparison Operator
-    std::cout << "==================== Comparison Operator ===================="
-              << std::endl;
+    printTitle("Comparison Operator");
     std::cout << "a < b " << std::endl;
     std::cout << std::boolalpha << (a < b) << std::endl;
     std::cout << "a > b" << std::endl;
@@ -66,8 +78,7 @@ int main(void) {
     std::cout << "c != d" << std::endl;
     std::cout << std::boolalpha << (c != d) << std::endl;
     // Arithmetic Operation
-    std::cout << "==================== Arithmetic Operator ===================="
-              << std::endl;
+    printTitle("Arithmetic Operator");
     std::cout << "a + b " << std::endl;
     std::cout << a + b << std::endl;
     std::cout << "a - b" << std::endl;
@@ -85,9 +96,7 @@ int main(void) {
     std::cout << "c / d" << std::endl;
     std::cout << c / d << std::endl;
     // Increment / Decrement
-    std::cout
-        << "==================== Increment / Decrement ===================="
-        << std::endl;
+    printTitle("Increment / Decrement");
     std::cout << "++a " << std::endl;
     std::cout << ++a << std::endl;
     std::cout << a << std::endl;
@@ -101,9 +110,7 @@ int main(void) {
     std::cout << a-- << std::endl;
     std::cout << a << std::endl;
     // Overloaded member function
-    std::cout << "==================== Overloaded member function "
-                 "===================="
-              << std::endl;
+    printTitle("Overloaded member function");
     std::cout << "max(a, b) " << std::endl;
     std::cout << Fixed::max(a, b) << std::endl;
     std::cout << "min( a, b )" << std::endl;
@@ -113,11 +120,13 @@ int main(void) {
     std::cout << "min( c, d )" << std::endl;
     std::cout << Fixed::min(c, d) << std::endl;
   }
+}
+
+void testEpsilon() {
   {
     Fixed EPSILON;
     EPSILON.setRawBits(1);
-    std::cout << "==================== Epsilon ===================="
-              << std::endl;
+    printTitle("Epsilon");
     std::cout << "EPSILON * EPSILON" << std::endl;
     std::cout << EPSILON * EPSILON << std::endl;
     std::cout << "EPSILON * -EPSILON" << std::endl;
@@ -127,15 +136,14 @@ int main(void) {
     std::cout << "-EPSILON * -EPSILON" << std::endl;
     std::cout << -EPSILON * -EPSILON << std::endl;
   }
-  return 0;
 }
-/*
-void test(const std::string & info, const Fixed a) {
+
+void test(const std::string &info, const Fixed a) {
   std::cout << std::fixed;
   std::cout << std::setw(15) << info << " : " << a << std::endl;
 }
 
-int main(void) {
+void testNori() {
   Fixed a;
   Fixed const b(Fixed(5.05f) * Fixed(2));
   Fixed const c(2);
@@ -207,6 +215,12 @@ int main(void) {
   if (i == (n / 1).getRawBits()) {
     std::cout << "binary check : OK" << std::endl;
   }
+}
+
+int main(void) {
+  testFromSubjects();
+  testOperators();
+  testEpsilon();
+  testNori();
   return 0;
 }
-*/
