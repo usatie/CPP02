@@ -7,7 +7,7 @@
 #include "Fixed.hpp"
 #include "Point.hpp"
 
-void test(std::string info, const Point a, const Point b, const Point c,
+void test(const std::string& info, const Point a, const Point b, const Point c,
           const Point p) {
   std::cout << std::fixed;
   std::cout  // std::setw(15)
@@ -18,6 +18,18 @@ void test(std::string info, const Point a, const Point b, const Point c,
 
 #define EPS 0.00390625f
 int main(void) {
+  {
+    Fixed a;
+    // setRawBits / getRawBits
+    std::cout << "==================== raw bits  ===================="
+              << std::endl;
+    std::cout << "a.setRawBits(-1): " << std::endl;
+    a.setRawBits(-1);
+    std::cout << "a: " << a << std::endl;
+    std::cout << "a.toInt(): " << a.toInt() << std::endl;
+    std::cout << "a.toFloat(): " << a.toFloat() << std::endl;
+    std::cout << "a.getRawBits(): " << a.getRawBits() << std::endl;
+  }
   {
     Point p;
 

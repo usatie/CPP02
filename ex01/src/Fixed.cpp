@@ -35,7 +35,8 @@ int Fixed::getRawBits(void) const { return value; }
 
 void Fixed::setRawBits(int const raw) { this->value = raw; }
 
-int Fixed::toInt(void) const { return value >> numFractionalBits; }
+// 'value >> numFractionalBits' doesn't work when value is small negative number
+int Fixed::toInt(void) const { return value / (1 << numFractionalBits); }
 
 float Fixed::toFloat(void) const {
   float result = (float)value / (1 << numFractionalBits);

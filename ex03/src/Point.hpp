@@ -18,8 +18,8 @@ class Point {
   const Fixed &getX() const;
   const Fixed &getY() const;
   // Comparison Operator
-  bool operator==(const Point &x) const;
-  bool operator!=(const Point &x) const;
+  bool operator==(const Point &p) const;
+  bool operator!=(const Point &p) const;
   // Arithmetic Operator
   Point operator+(const Point &p) const;
   Point operator-(const Point &p) const;
