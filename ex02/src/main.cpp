@@ -41,7 +41,7 @@ int main(void) {
     // Comparison Operator
     std::cout << "==================== Comparison Operator ===================="
               << std::endl;
-    std::cout << " a < b " << std::endl;
+    std::cout << "a < b " << std::endl;
     std::cout << std::boolalpha << (a < b) << std::endl;
     std::cout << "a > b" << std::endl;
     std::cout << std::boolalpha << (a > b) << std::endl;
@@ -68,7 +68,7 @@ int main(void) {
     // Arithmetic Operation
     std::cout << "==================== Arithmetic Operator ===================="
               << std::endl;
-    std::cout << " a + b " << std::endl;
+    std::cout << "a + b " << std::endl;
     std::cout << a + b << std::endl;
     std::cout << "a - b" << std::endl;
     std::cout << a - b << std::endl;
@@ -88,7 +88,7 @@ int main(void) {
     std::cout
         << "==================== Increment / Decrement ===================="
         << std::endl;
-    std::cout << " ++a " << std::endl;
+    std::cout << "++a " << std::endl;
     std::cout << ++a << std::endl;
     std::cout << a << std::endl;
     std::cout << "a++" << std::endl;
@@ -104,7 +104,7 @@ int main(void) {
     std::cout << "==================== Overloaded member function "
                  "===================="
               << std::endl;
-    std::cout << " max(a, b) " << std::endl;
+    std::cout << "max(a, b) " << std::endl;
     std::cout << Fixed::max(a, b) << std::endl;
     std::cout << "min( a, b )" << std::endl;
     std::cout << Fixed::min(a, b) << std::endl;
