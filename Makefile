@@ -14,6 +14,14 @@ newdir_name := $(prefix)$(next_num)
 
 .PHONY: newdir
 
+all:
+	# Build all the sub directories
+	for dir in $(wildcard ex*); do make -C $$dir ; done
+
+format:
+	# Format all the sub directories
+	for dir in $(wildcard ex*); do make -C $$dir format ; done
+
 newdir:
 	# Create the new directory
 	mkdir -p $(newdir_name)
