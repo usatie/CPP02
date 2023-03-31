@@ -8,7 +8,7 @@
 #include "Point.hpp"
 
 // print title in green color surrounded by '='
-void printTitle(std::string const &title) {
+void printTitle(std::string const& title) {
   // set color to green
   std::cout << "\033[1;32m";
   // print '='
@@ -27,25 +27,25 @@ void printTitle(std::string const &title) {
 // https://copilot.github.com/
 void printTriangle(const Point a, const Point b, const Point c, const Point p) {
   // get min and max of x and y
-  long minX = std::min(std::min(a.getX(), b.getX()), c.getX()).getRawBits() ;
-  long maxX = std::max(std::max(a.getX(), b.getX()), c.getX()).getRawBits() ;
-  long minY = std::min(std::min(a.getY(), b.getY()), c.getY()).getRawBits() ;
-  long maxY = std::max(std::max(a.getY(), b.getY()), c.getY()).getRawBits() ;
-  
+  long minX = std::min(std::min(a.getX(), b.getX()), c.getX()).getRawBits();
+  long maxX = std::max(std::max(a.getX(), b.getX()), c.getX()).getRawBits();
+  long minY = std::min(std::min(a.getY(), b.getY()), c.getY()).getRawBits();
+  long maxY = std::max(std::max(a.getY(), b.getY()), c.getY()).getRawBits();
+
   // get size of the triangle
   long width = maxX - minX;
   long height = maxY - minY;
   long size = std::max(width, height);
 
   // convert to 10x10 grid
-  int ax = (a.getX().getRawBits() - minX) * 10 / size ;
-  int ay = (a.getY().getRawBits() - minY) * 10 / size ;
-  int bx = (b.getX().getRawBits() - minX) * 10 / size ;
-  int by = (b.getY().getRawBits() - minY) * 10 / size ;
-  int cx = (c.getX().getRawBits() - minX) * 10 / size ;
-  int cy = (c.getY().getRawBits() - minY) * 10 / size ;
-  int px = (p.getX().getRawBits() - minX) * 10 / size ;
-  int py = (p.getY().getRawBits() - minY) * 10 / size ;
+  int ax = (a.getX().getRawBits() - minX) * 10 / size;
+  int ay = (a.getY().getRawBits() - minY) * 10 / size;
+  int bx = (b.getX().getRawBits() - minX) * 10 / size;
+  int by = (b.getY().getRawBits() - minY) * 10 / size;
+  int cx = (c.getX().getRawBits() - minX) * 10 / size;
+  int cy = (c.getY().getRawBits() - minY) * 10 / size;
+  int px = (p.getX().getRawBits() - minX) * 10 / size;
+  int py = (p.getY().getRawBits() - minY) * 10 / size;
 
   // print triangle
   for (int y = 10; y >= 0; y--) {
@@ -58,15 +58,18 @@ void printTriangle(const Point a, const Point b, const Point c, const Point p) {
         std::cout << " C";
       } else if (x == px && y == py) {
         std::cout << " P";
-      // if point is on the edge of the triangle
-      } else if (((y - ay) * (bx - ax) == (by - ay) * (x - ax)) && x >= std::min(ax, bx) &&
-                 x <= std::max(ax, bx) && y >= std::min(ay, by) && y <= std::max(ay, by)) {
+        // if point is on the edge of the triangle
+      } else if (((y - ay) * (bx - ax) == (by - ay) * (x - ax)) &&
+                 x >= std::min(ax, bx) && x <= std::max(ax, bx) &&
+                 y >= std::min(ay, by) && y <= std::max(ay, by)) {
         std::cout << " .";
-      } else if (((y - by) * (cx - bx) == (cy - by) * (x - bx)) && x >= std::min(bx, cx) &&
-                 x <= std::max(bx, cx) && y >= std::min(by, cy) && y <= std::max(by, cy)) {
+      } else if (((y - by) * (cx - bx) == (cy - by) * (x - bx)) &&
+                 x >= std::min(bx, cx) && x <= std::max(bx, cx) &&
+                 y >= std::min(by, cy) && y <= std::max(by, cy)) {
         std::cout << " .";
-      } else if (((y - cy) * (ax - cx) == (ay - cy) * (x - cx)) && x >= std::min(cx, ax) &&
-                 x <= std::max(cx, ax) && y >= std::min(cy, ay) && y <= std::max(cy, ay)) {
+      } else if (((y - cy) * (ax - cx) == (ay - cy) * (x - cx)) &&
+                 x >= std::min(cx, ax) && x <= std::max(cx, ax) &&
+                 y >= std::min(cy, ay) && y <= std::max(cy, ay)) {
         std::cout << " .";
       } else {
         std::cout << "  ";
@@ -91,7 +94,7 @@ int main(void) {
   {
     Fixed a;
     // setRawBits / getRawBits
-    printTitle("setRawBits / getRawBits"); 
+    printTitle("setRawBits / getRawBits");
     std::cout << "a.setRawBits(-1): " << std::endl;
     a.setRawBits(-1);
     std::cout << "a: " << a << std::endl;
