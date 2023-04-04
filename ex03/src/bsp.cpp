@@ -48,8 +48,15 @@ bool bsp(Point const a, Point const b, Point const c, Point const point) {
   // If p is inside of the triangle,
   // sign of cross(ab, ap), cross(bc, bp) and cross(ca, cp) must be the same.
   // s1, s2, s3 is the sign of the each cross product
-  bool s1 = side(a, b, point);
-  bool s2 = side(b, c, point);
-  bool s3 = side(c, a, point);
+  Fixed cross_ab_ap = cross(b - a, point - a) ;
+  Fixed cross_bc_bp = cross(c - b, point - b) ;
+  Fixed cross_ca_cp = cross(a - c, point - c) ;
+
+  if ( cross_ab_ap == 0 || cross_bc_bp == 0 || cross_ca_cp == 0 )
+	  return false ;
+  
+  bool s1 = cross_ab_ap > 0;
+  bool s2 = cross_bc_bp > 0;
+  bool s3 = cross_ca_cp > 0;
   return (s1 && s2 && s3) || (!s1 && !s2 && !s3);
 }
