@@ -3,23 +3,33 @@
 #include <iostream>
 
 Point::Point() : x(0), y(0) {
-  // std::cout << "[ Point Default constructor called ]" << std::endl ;
+#ifdef DEBUG
+  std::cout << "[ Point Default constructor called ]" << std::endl;
+#endif
 }
 
 Point::Point(const Fixed &x, const Fixed &y) : x(x), y(y) {
-  // std::cout << "[ Point constructor called ]" << std::endl ;
+#ifdef DEBUG
+  std::cout << "[ Point constructor called ]" << std::endl;
+#endif
 }
 
 Point::Point(const float x, const float y) : x(x), y(y) {
-  // std::cout << "[ Point constructor called ]" << std::endl ;
+#ifdef DEBUG
+  std::cout << "[ Point constructor called ]" << std::endl;
+#endif
 }
 
 Point::Point(const Point &p) : x(p.x), y(p.y) {
-  // std::cout << "[ Point Copy constructor called ]" << std::endl ;
+#ifdef DEBUG
+  std::cout << "[ Point Copy constructor called ]" << std::endl;
+#endif
 }
 
 Point &Point::operator=(const Point &p) {
-  // std::cout << "[ Point Copy assignment operator called ]" << std::endl ;
+#ifdef DEBUG
+  std::cout << "[ Point Copy assignment operator called ]" << std::endl;
+#endif
   if (this != &p) {
     // How to modify const member?
     /*
@@ -31,7 +41,9 @@ Point &Point::operator=(const Point &p) {
 }
 
 Point::~Point() {
-  // std::cout << "[ Point destructor is called ]" << std::endl ;
+#ifdef DEBUG
+  std::cout << "[ Point destructor is called ]" << std::endl;
+#endif
 }
 
 // Comparison Operator

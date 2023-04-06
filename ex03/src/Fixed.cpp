@@ -4,41 +4,59 @@
 #include <iostream>
 
 Fixed::Fixed() : value(0) {
+#ifdef DEBUG
   std::cout << "[ Default constructor called ]" << std::endl;
+#endif
 }
 
 Fixed::Fixed(const Fixed& x) {
+#ifdef DEBUG
   std::cout << "[ Copy constructor called ]" << std::endl;
+#endif
   operator=(x);
 }
 
 Fixed::Fixed(const int x) {
   value = x << numFractionalBits;
+#ifdef DEBUG
   std::cout << "[ Constructor from int called ]" << std::endl;
+#endif
 }
 
 Fixed::Fixed(const float x) {
   value = roundf(x * (1 << numFractionalBits));
+#ifdef DEBUG
   std::cout << "[ Constructor from float called ]" << std::endl;
+#endif
 }
 
 Fixed& Fixed::operator=(const Fixed& x) {
+#ifdef DEBUG
   std::cout << "[ Copy assignment operator called ]" << std::endl;
+#endif
   if (this != &x) {
     this->value = x.getRawBits();
   }
   return *this;
 }
 
-Fixed::~Fixed() { std::cout << "[ Destructor is called ]" << std::endl; }
+Fixed::~Fixed() {
+#ifdef DEBUG
+  std::cout << "[ Destructor is called ]" << std::endl;
+#endif
+}
 
 int Fixed::getRawBits(void) const {
+#ifdef DEBUG
   std::cout << "[ getRawBits member function called ]" << std::endl;
+#endif
   return value;
 }
 
 void Fixed::setRawBits(int const raw) {
+#ifdef DEBUG
   std::cout << "[ setRawBits member function called ]" << std::endl;
+#endif
   this->value = raw;
 }
 

@@ -11,14 +11,6 @@ Fixed cross(Point const a, Point const b) {
   return (a.getX() * b.getY() - a.getY() * b.getX());
 }
 
-//     point
-//    /
-//   /
-//  p1-------->p2
-bool side(Point const p1, Point const p2, Point const point) {
-  return cross(p2 - p1, point - p1) > 0;
-}
-
 bool bsp(Point const a, Point const b, Point const c, Point const point) {
   // 1. pre-validation test with bounding box
   // Get x,y boundaries
@@ -48,13 +40,12 @@ bool bsp(Point const a, Point const b, Point const c, Point const point) {
   // If p is inside of the triangle,
   // sign of cross(ab, ap), cross(bc, bp) and cross(ca, cp) must be the same.
   // s1, s2, s3 is the sign of the each cross product
-  Fixed cross_ab_ap = cross(b - a, point - a) ;
-  Fixed cross_bc_bp = cross(c - b, point - b) ;
-  Fixed cross_ca_cp = cross(a - c, point - c) ;
+  Fixed cross_ab_ap = cross(b - a, point - a);
+  Fixed cross_bc_bp = cross(c - b, point - b);
+  Fixed cross_ca_cp = cross(a - c, point - c);
 
-  if ( cross_ab_ap == 0 || cross_bc_bp == 0 || cross_ca_cp == 0 )
-	  return false ;
-  
+  if (cross_ab_ap == 0 || cross_bc_bp == 0 || cross_ca_cp == 0) return false;
+
   bool s1 = cross_ab_ap > 0;
   bool s2 = cross_bc_bp > 0;
   bool s3 = cross_ca_cp > 0;

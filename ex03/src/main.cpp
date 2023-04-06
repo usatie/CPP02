@@ -36,8 +36,7 @@ void printTriangle(const Point a, const Point b, const Point c, const Point p) {
   long width = maxX - minX;
   long height = maxY - minY;
   long size = std::max(width, height);
-  if ( size == 0 )
-	  size = 1 ;
+  if (size == 0) size = 1;
 
   // convert to 10x10 grid
   int ax = (a.getX().getRawBits() - minX) * 10 / size;
@@ -50,11 +49,10 @@ void printTriangle(const Point a, const Point b, const Point c, const Point p) {
   int py = (p.getY().getRawBits() - minY) * 10 / size;
 
   // print triangle
-  bool printed = false ;
+  bool printed = false;
   for (int y = 10; y >= 0; y--) {
     for (int x = 0; x <= 10; x++) {
-      if ( !printed )
-        std::cout << " " ;
+      if (!printed) std::cout << " ";
       if (x == ax && y == ay) {
         std::cout << "A";
       } else if (x == bx && y == by) {
@@ -79,13 +77,14 @@ void printTriangle(const Point a, const Point b, const Point c, const Point p) {
       } else {
         std::cout << " ";
       }
-	  if ( (x == ax && y == ay) + (x == bx && y == by) + (x == cx && y == cy) + (x == px && y == py) > 1 )
-	  {
-        std::cout << "*" ;
-		printed = true ;
-	  } else {
-		printed = false ;
-	  }
+      if ((x == ax && y == ay) + (x == bx && y == by) + (x == cx && y == cy) +
+              (x == px && y == py) >
+          1) {
+        std::cout << "*";
+        printed = true;
+      } else {
+        printed = false;
+      }
     }
     std::cout << std::endl;
   }
@@ -124,7 +123,8 @@ int main(void) {
     Point p;
 
     printTitle("NORMAL TEST");
-    test("On the same line", Point(0, 0), Point(1, 1), Point(3, 3), Point(2,2));
+    test("On the same line", Point(0, 0), Point(1, 1), Point(3, 3),
+         Point(2, 2));
     test("/_._\\", Point(0, 1), Point(-1, 0), Point(1, 0), p);
     test(".\\|", Point(0, 1), Point(1, 1), Point(1, 0), p);
     test(".//", Point(-1, -1), Point(1, 1), Point(1, 0), p);
@@ -139,7 +139,8 @@ int main(void) {
     Point p;
 
     printTitle("EPSILON TEST");
-    test("On the same line", Point(0, 0), Point(EPS, EPS), Point(3 * EPS, 3 * EPS), Point(2 * EPS, 2 * EPS));
+    test("On the same line", Point(0, 0), Point(EPS, EPS),
+         Point(3 * EPS, 3 * EPS), Point(2 * EPS, 2 * EPS));
     test("|._\\", Point(0, EPS), Point(0, 0), Point(EPS, 0), p);
     test("/_._\\", Point(0, EPS), Point(-EPS, 0), Point(EPS, 0), p);
     test(".\\|", Point(0, EPS), Point(EPS, EPS), Point(EPS, 0), p);

@@ -34,4 +34,7 @@ format:
 	clang-format -style=google $(SRCS) $(INCLUDES) -i
 	cppcheck --enable=all --inconclusive --suppress=missingIncludeSystem . -I .
 
-.PHONY: all clean fclean re run
+debug: CXXFLAGS += -D DEBUG -g
+debug: re
+
+.PHONY: all clean fclean re run format debug
